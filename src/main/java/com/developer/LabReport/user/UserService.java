@@ -1,25 +1,15 @@
 package com.developer.LabReport.user;
-
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@Service
-public class UserService {
+public interface UserService {
 
-    public List<User> findAllUsers() {
-        return List.of(
-                new User(
-                        "Umut",
-                        "Yananer",
-                        1234567,
-                        true),
-                new User(
-                        "Eren",
-                        "Bozkurt",
-                        1212121,
-                        false
-                )
-        );
-    }
+    User save(User u);
+
+    List<User> findAllUsers();
+
+    User findByUserId(int userid);
+
+    User update(User u);
+
+    void delete(int userid);
 }
