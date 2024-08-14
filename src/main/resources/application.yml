@@ -1,1 +1,16 @@
-spring.application.name=LabReport
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/lab_db
+    username: postgres
+    password: Mru2Hzt8
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

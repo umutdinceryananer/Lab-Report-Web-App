@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 @Repository
@@ -20,16 +21,16 @@ public class InMemoryUserDao {
         return USERS;
     }
 
-    public User findByUserId(int userid) {
+    public User findByUserId(Long userid) {
         return USERS.stream()
-                .filter(u -> u.getUserid() == userid)
+                .filter(u -> Objects.equals(u.getUserid(), userid))
                 .findFirst()
                 .orElse(null);
     }
 
     public User update(User u) {
         var userIndex = IntStream.range(0, USERS.size())
-                .filter(index -> USERS.get(index).getUserid() == u.getUserid())
+                .filter(index -> Objects.equals(USERS.get(index).getUserid(), u.getUserid()))
                 .findFirst()
                 .orElse(-1);
         if (userIndex > -1) {
@@ -39,7 +40,7 @@ public class InMemoryUserDao {
         return null;
     }
 
-    public void delete(int userid) {
+    public void delete(Long userid) {
         var user = findByUserId(userid);
         if (user != null) {
             USERS.remove(user);

@@ -7,9 +7,9 @@ public interface UserService {
 
     List<User> findAllUsers();
 
-    User findByUserId(int userid);
+    User findByUserId(Long userid);
 
     User update(User u);
 
-    void delete(int userid);
+    void delete(Long userid);
 }

@@ -1,14 +1,29 @@
 package com.developer.LabReport.user;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "lab_user")
 public class User {
+
+    @Id
+    @Column(unique = true, nullable = false)
+    @GeneratedValue
+    private Long userid;
 
     private String name;
 
     private String surname;
 
-    private int userid;
-
     private boolean isAdmin;
+
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
+    }
 
     public String getName() {
         return name;
@@ -26,14 +41,6 @@ public class User {
         this.surname = surname;
     }
 
-    public int getUserid() {
-        return userid;
-    }
-
-    public void setUserid(int userid) {
-        this.userid = userid;
-    }
-
     public boolean isAdmin() {
         return isAdmin;
     }
@@ -42,16 +49,6 @@ public class User {
         isAdmin = admin;
     }
 
+    // No-args constructor
     public User() {}
-
-    public User(String name,
-                String surname,
-                int userid,
-                boolean isAdmin) {
-
-        this.name = name;
-        this.surname = surname;
-        this.userid = userid;
-        this.isAdmin = isAdmin;
-    }
 }

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("im")
 public class InMemoryUserService implements UserService {
 
     private final InMemoryUserDao userDao;
@@ -24,7 +24,7 @@ public class InMemoryUserService implements UserService {
     }
 
     @Override
-    public User findByUserId(int userid) {
+    public User findByUserId(Long userid) {
         return this.userDao.findByUserId(userid);
     }
 
@@ -34,7 +34,7 @@ public class InMemoryUserService implements UserService {
     }
 
     @Override
-    public void delete(int userid) {
+    public void delete(Long userid) {
         userDao.delete(userid);
     }
 }

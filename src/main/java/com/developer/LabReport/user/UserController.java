@@ -1,6 +1,7 @@
 package com.developer.LabReport.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,7 +12,8 @@ public class UserController {
 
     private UserService service;
 
-    public UserController(UserService service) {
+    public UserController(@Qualifier("db") UserService service)
+    {
         this.service = service;
     }
 
@@ -22,7 +24,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public User findByUserId(@PathVariable("userId") int userId){
+    public User findByUserId(@PathVariable("userId") Long userId){
         return service.findByUserId(userId);
     }
 
@@ -37,9 +39,9 @@ public class UserController {
         return service.update(user);
     }
 
-    @DeleteMapping("/{userId}")
-    public void delete(@PathVariable("userId") int userId){
-        service.delete(userId);
+    @DeleteMapping("/{userid}")
+    public void delete(@PathVariable("userid") Long userid){
+        service.delete(userid);
     }
 
 }
